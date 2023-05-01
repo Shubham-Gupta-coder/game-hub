@@ -2,17 +2,34 @@ import React, { useEffect, useState } from "react";
 
 const Games = () => {
   const [games, setGames] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
+    setIsLoading(true);
     fetch("https://api.rawg.io/api/games?key=3deaa2f5f8e64ccfa91064d33d80d2f5")
       .then((res) => res.json())
       .then((data) => {
         setGames(data.results);
-        console.log(data.results);
+        setIsLoading(false);
       })
       .catch((err) => console.error("Error: ", err));
   }, []);
   return (
     <div>
+      {isLoading && (
+        <div className="min-h-[15rem] flex flex-col bg-white border shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7] w-[50vw]">
+          <div className="flex flex-auto flex-col justify-center items-center p-4 md:p-5">
+            <div className="flex justify-center">
+              <div
+                className="animate-spin inline-block w-6 h-6 border-[3px] border-current border-t-transparent text-blue-600 rounded-full"
+                role="status"
+                aria-label="loading"
+              >
+                <span className="sr-only">Loading...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {games.map((game) => (
           <a

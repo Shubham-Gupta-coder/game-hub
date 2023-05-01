@@ -49,7 +49,7 @@ const Sidebar = () => {
         <div className="grid grid-cols-10 h-full mt-14">
           <aside
             id="logo-sidebar"
-            className="z-40 w-[20vw] h-full pt-5 transition-transform -translate-x-full bg-white border-r col-span-2 border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+            className="z-40 w-[20vw] h-full min-h-screen pt-5 transition-transform -translate-x-full bg-white border-r col-span-2 border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
             aria-label="Sidebar"
           >
             <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
