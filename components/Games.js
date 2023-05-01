@@ -13,14 +13,15 @@ const Games = () => {
       })
       .catch((err) => console.error("Error: ", err));
   }, []);
+
   return (
     <div>
       {isLoading && (
-        <div className="min-h-[15rem] flex flex-col bg-white border shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7] w-[50vw]">
+        <div className="min-h-[15rem] flex flex-col">
           <div className="flex flex-auto flex-col justify-center items-center p-4 md:p-5">
             <div className="flex justify-center">
               <div
-                className="animate-spin inline-block w-6 h-6 border-[3px] border-current border-t-transparent text-blue-600 rounded-full"
+                className="animate-spin inline-block w-14 h-14 border-[10px] border-current border-t-transparent text-blue-600 rounded-full"
                 role="status"
                 aria-label="loading"
               >
@@ -30,10 +31,10 @@ const Games = () => {
           </div>
         </div>
       )}
-      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {games.map((game) => (
           <a
-            className="flex m-5 flex-col group bg-white border shadow-sm rounded-xl overflow-hidden hover:shadow-lg transition dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7] col-span-1"
+            className="flex m-2 flex-col group bg-white border shadow-sm rounded-xl overflow-hidden hover:shadow-lg transition dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7] col-span-1"
             key={game.id}
           >
             <div className="relative pt-[50%] sm:pt-[60%] lg:pt-[80%] rounded-t-xl overflow-hidden">
@@ -43,11 +44,11 @@ const Games = () => {
                 alt="Image Description"
               />
             </div>
-            <div className="p-4 mt-2 md:p-5 flex items-center h-full justify-center flex-col">
+            <div className="p-4 mt-2 md:p-5 flex items-center justify-center flex-col">
               <h3 className="text-lg font-bold text-center text-gray-800 dark:text-white">
                 {game.name}
               </h3>
-              <select className="w-full py-5 px-2 border-gray-200 rounded-md mt-3 text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+              <select className="w-full py-5 px-2 rounded-md mt-3 text-md border-4 bg-slate-100 border-gray-300 text-gray-600">
                 {game.platforms.map(({ platform }) => (
                   <option key={game.id} className="text-white bg-gray-300">
                     {platform.name}

@@ -1,7 +1,7 @@
 import React from 'react'
 import Main from './Main'
 
-const Sidebar = () => {
+const Sidebar = ({ toggleMode }) => {
   return (
     <>
       <div className="min-h-screen">
@@ -183,8 +183,8 @@ const Sidebar = () => {
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <button
+                    onClick={toggleMode}
                     className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                   >
                     <svg
@@ -203,19 +203,19 @@ const Sidebar = () => {
                     <span className="flex-1 ml-3 whitespace-nowrap">
                       Sign Up
                     </span>
-                  </a>
+                  </button>
                 </li>
               </ul>
             </div>
           </aside>
 
-          <div className=" w-full col-span-8 flex items-center py-10 bg-gray-700 justify-center">
+          <div className=" w-full col-span-8 flex items-center py-10 dark:bg-gray-700 bg-gray-100 justify-center">
             <Main />
           </div>
         </div>
       </div>
     </>
   );
-}
+};
 
 export default Sidebar

@@ -1,12 +1,8 @@
-import React from 'react'
-import Games from './Games'
+import React from "react";
+import Games from "./Games";
 
 const Main = () => {
-    return (
+  return <Games />;
+};
 
-            <Games />
-
-  )
-}
-
-export default Main
+export default Main;
