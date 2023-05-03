@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const Games = () => {
+const Games = ({ showPlatform }) => {
   const [games, setGames] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
@@ -60,13 +60,18 @@ const Games = () => {
               <h3 className="text-lg font-bold text-center text-gray-800 dark:text-white">
                 {game.name}
               </h3>
-              <select className="w-full py-5 px-2 rounded-md mt-3 text-md border-4 bg-slate-100 border-gray-300 text-gray-600">
-                {game.platforms.map(({ platform }) => (
-                  <option key={game.id} className="text-white bg-gray-300">
-                    {platform.name}
-                  </option>
-                ))}
-              </select>
+              {showPlatform && (
+                <select className="w-full py-5 px-2 rounded-md mt-3 text-md border-4 dark:bg-gray-600 bg-slate-100 border-gray-300 dark:border-gray-700 dark:text-gray-100 text-gray-600">
+                  {game.platforms.map(({ platform }) => (
+                    <option
+                      key={game.id + platform.id}
+                      className="text-white bg-gray-300"
+                    >
+                      {platform.name}
+                    </option>
+                  ))}
+                </select>
+              )}
             </div>
           </a>
         ))}

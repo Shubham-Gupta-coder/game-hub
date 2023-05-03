@@ -1,36 +1,16 @@
-import React from 'react'
-import Main from './Main'
+import React, { useState } from "react";
+import Main from "./Main";
 
-const Sidebar = ({ toggleMode }) => {
+const Sidebar = () => {
+  const [showPlatform, setShowPlatform] = useState(false);
+
   return (
     <>
       <div className="min-h-screen">
         <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
           <div className="px-3 py-3 lg:px-5 lg:pl-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center justify-start">
-                <button
-                  data-drawer-target="logo-sidebar"
-                  data-drawer-toggle="logo-sidebar"
-                  aria-controls="logo-sidebar"
-                  type="button"
-                  className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                >
-                  <span className="sr-only">Open sidebar</span>
-                  <svg
-                    className="w-6 h-6"
-                    aria-hidden="true"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clipRule="evenodd"
-                      fillRule="evenodd"
-                      d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
-                    ></path>
-                  </svg>
-                </button>
+            <div className="flex items-center justify-evenly">
+              <div className="flex items-center w-screen justify-between">
                 <a href="https://flowbite.com" className="flex ml-2 md:mr-24">
                   <img
                     src="https://img.freepik.com/premium-vector/console-ninja-gaming-logo-design_100735-52.jpg"
@@ -41,6 +21,27 @@ const Sidebar = ({ toggleMode }) => {
                     GameHub
                   </span>
                 </a>
+
+                <button
+                  onClick={() => {
+                    const html = document.getElementsByTagName("html")[0];
+                    if (html.classList.contains("dark")) {
+                      html.classList.remove("dark");
+                    } else {
+                      html.classList.add("dark");
+                    }
+                  }}
+                  className="flex space-x-2 items-center"
+                >
+                  <h2 className="font-bold text-gray-700 dark:text-gray-100">
+                    Dark Mode
+                  </h2>
+                  <input
+                    type="checkbox"
+                    id="hs-basic-usage"
+                    className="relative w-[3.25rem] h-7 bg-gray-100 checked:bg-none checked:bg-blue-600 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-blue-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-blue-200"
+                  />
+                </button>
               </div>
             </div>
           </div>
@@ -54,6 +55,26 @@ const Sidebar = ({ toggleMode }) => {
           >
             <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
               <ul className="space-y-2 font-medium">
+                <button
+                  onClick={() => {
+                    const html = document.getElementsByTagName("html")[0];
+                    if (showPlatform) {
+                      setShowPlatform(false);
+                    } else {
+                      setShowPlatform(true);
+                    }
+                  }}
+                  className="flex space-x-2 items-center"
+                >
+                  <h2 className="p-2 text-gray-900 dark:text-gray-100">
+                    Show Platforms
+                  </h2>
+                  <input
+                    type="checkbox"
+                    id="hs-basic-usage"
+                    className="relative w-[3.25rem] h-7 bg-gray-100 checked:bg-none checked:bg-blue-600 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-blue-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-blue-200"
+                  />
+                </button>
                 <li>
                   <a
                     href="#"
@@ -183,10 +204,7 @@ const Sidebar = ({ toggleMode }) => {
                   </a>
                 </li>
                 <li>
-                  <button
-                    onClick={toggleMode}
-                    className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-                  >
+                  <button className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <svg
                       aria-hidden="true"
                       className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -210,7 +228,7 @@ const Sidebar = ({ toggleMode }) => {
           </aside>
 
           <div className=" w-full col-span-8 flex items-center py-10 dark:bg-gray-700 bg-gray-100 justify-center">
-            <Main />
+            <Main showPlatform={showPlatform} />
           </div>
         </div>
       </div>
@@ -218,4 +236,4 @@ const Sidebar = ({ toggleMode }) => {
   );
 };
 
-export default Sidebar
+export default Sidebar;
